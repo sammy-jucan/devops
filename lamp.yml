@@ -1,0 +1,11 @@
+---
+
+#teste cu install de lamp stack prin ansible
+- name: Setup LAMP stack pt deploy
+  hosts: masinidetest
+  become: true
+  roles:
+    - apache
+    - php
+    - mysql
+    - websites_cfg
