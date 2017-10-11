@@ -1,0 +1,20 @@
+---
+- name: Deploy new index file
+  hosts: masinidetest
+  become: true
+  tasks:
+    - name: create directory under www
+      file:
+        path: "/var/www/html/sammy"
+        state: directory
+        recurse: yes
+    - name: Copy the index file
+      copy:
+        src: index.php
+        dest: /var/www/html/sammy/
+    - name: restart httpd
+      when: ansible_distribution == "CentOS"
+      service: name=httpd state=restarted
+    - name: restart apache2
+      when: ansible_distribution == "Ubuntu"
+      service: name=apache2 state=restarted

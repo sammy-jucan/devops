@@ -1,0 +1,7 @@
+---
+#Setup playbook pentru masinile ce vor rula jenkins/CI
+- name: Setup for jenkins
+  hosts: jenkins
+  become: true
+  roles:
+    - jenkins
